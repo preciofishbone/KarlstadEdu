@@ -1,0 +1,1 @@
+{"Id":"7bc3587f-0b80-4060-9e43-f38af7759e99","Type":"Extension","Projects":[{"Path":"Karlstad.Edu.Web/Karlstad.Edu.Web.csproj","BaseImage":"preciofishbone/omnia:6.0-webapp"},{"Path":"Karlstad.Edu.Worker/Karlstad.Edu.Worker.csproj","BaseImage":"preciofishbone/omnia:6.0-worker"}]}

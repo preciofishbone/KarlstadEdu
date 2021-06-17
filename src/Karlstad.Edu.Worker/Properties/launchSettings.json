@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Karlstad.Edu.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "OMNIA_EXTENSIONID": "7bc3587f-0b80-4060-9e43-f38af7759e99"
+      }
+    }
+  }
+}
