@@ -2,13 +2,13 @@ import { types } from 'typestyle';
 import { StyleFlow } from '@omnia/fx/ux';
 
 /**
- * Styles for the KarlstadSampleSettings component
+ * Styles for the KarlstadTest component
  */
-export const KarlstadSampleSettingsStyles = {} as {
+export const KarlstadTestStyles = {} as {
     container: types.NestedCSSProperties
 };
 
-StyleFlow.define(KarlstadSampleSettingsStyles, {
+StyleFlow.define(KarlstadTestStyles, {
     container: {
         fontSize: 22
     }

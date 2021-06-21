@@ -1,32 +1,24 @@
 import { Component } from 'vue-property-decorator';
 import { vueCustomElement, IWebComponentInstance, WebComponentBootstrapper } from "@omnia/fx";
 import { StyleFlow, VueComponentBase, BlockSettingsWriter } from '@omnia/fx/ux';
-import { KarlstadSampleSettingsStyles } from './KarlstadSampleSettings.css';
+import { KarlstadTestSettingsStyles } from './KarlstadTestSettings.css';
 import { IBlockSettingsWriter } from '@omnia/fx-models';
 
 
-export interface KarlstadSampleBlockSettings{
+export interface KarlstadTestBlockSettings{
     title: string;
+    description:string;
 }
-
-export const BlockConfigurationFactory = {
-    defaultSettings(): KarlstadSampleBlockSettings {
-        return {
-            title: "my block title"
-        }
-    }
-}
-
 
 @Component
-export default class KarlstadSampleSettings extends VueComponentBase implements IWebComponentInstance {
+export default class KarlstadTestSettings extends VueComponentBase implements IWebComponentInstance {
     
-    private KarlstadSampleSettingsClasses = StyleFlow.use(KarlstadSampleSettingsStyles);
+    private KarlstadTestSettingsClasses = StyleFlow.use(KarlstadTestSettingsStyles);
     
-    @BlockSettingsWriter<KarlstadSampleBlockSettings>({
-        defaultValue: BlockConfigurationFactory.defaultSettings()
+    @BlockSettingsWriter<KarlstadTestBlockSettings>({
+        defaultValue: { title: 'my block title',description:'description sample'}
     })
-    protected settings: IBlockSettingsWriter<KarlstadSampleBlockSettings>;
+    protected settings: IBlockSettingsWriter<KarlstadTestBlockSettings>;
 
     mounted() {
         WebComponentBootstrapper
@@ -41,6 +33,10 @@ export default class KarlstadSampleSettings extends VueComponentBase implements 
                         filled
                         v-model={this.settings.title}
                         label='Title'></v-text-field>
+                    <v-text-field
+                        filled
+                        v-model={this.settings.description}
+                        label='Beskrivning'></v-text-field>
                 </v-card-text>
             </v-card>
         )
@@ -48,5 +44,5 @@ export default class KarlstadSampleSettings extends VueComponentBase implements 
 }
 
 WebComponentBootstrapper.registerElement((manifest) => {
-    vueCustomElement(manifest.elementName, KarlstadSampleSettings);
+    vueCustomElement(manifest.elementName, KarlstadTestSettings);
 });
