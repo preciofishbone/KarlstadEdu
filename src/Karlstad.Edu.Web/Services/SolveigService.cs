@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Karlstad.Edu.Web.Models;
 
 namespace Karlstad.Edu.Web.Services
 {
@@ -15,11 +16,16 @@ namespace Karlstad.Edu.Web.Services
             this._httpClient = httpClient;
         }
 
-        public async ValueTask<string> Search(string query)
+        public async ValueTask<List<SolveigItem>> SearchAsync(string query)
         {
 
+            var result = new List<SolveigItem>();
 
-            return "result";
+            var resp = await this._httpClient.GetAsync($"https://karlstad.infocaption.com/API/lucene/enduser/guidesearch?searchQuery={query}");
+
+            result = (await resp.Content.ReadAsJsonAsync<SolveigResponse>()).Results;
+            //https://karlstad.infocaption.com/API/lucene/enduser/guidesearch?searchQuery=
+            return result;
         }
     }
 }

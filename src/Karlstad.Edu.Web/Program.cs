@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Omnia.Fx.HostConfiguration;
 using Omnia.Fx.HostConfiguration.Extensions;
 using Omnia.Fx.NetCore.WebApp.Hosting;
+using Karlstad.Edu.Web.Services;
 
 namespace Karlstad.Edu.Web
 {
@@ -46,6 +47,8 @@ namespace Karlstad.Edu.Web
                         hostBuilder
                         .ConfigureServices(services => {
                             services.AddRouting();
+
+                            services.AddHttpClient<ISolveigService,SolveigService>();
 
                             // Register the Swagger generator, defining one or more Swagger documents
                             services.AddSwaggerGen(c =>

@@ -1,9 +1,15 @@
 
-namespace Karlstad.Edu.Web.Services{
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Karlstad.Edu.Web.Models;
 
-public interface ISolveigService{
-    
-}
+namespace Karlstad.Edu.Web.Services
+{
+
+    public interface ISolveigService
+    {
+        ValueTask<List<SolveigItem>> SearchAsync(string query);
+    }
 
 }
 

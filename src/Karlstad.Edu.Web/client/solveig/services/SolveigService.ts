@@ -13,7 +13,7 @@ export class SolveigService {
 
     async search(query:string){
         return new Promise<Array<SolveigItem>>(async (resolve,reject)=>{
-            let result = await this.httpClient.get<IHttpApiOperationResult<Array<SolveigItem>>> ("/api/Solveig/Search" + query);
+            let result = await this.httpClient.get<IHttpApiOperationResult<Array<SolveigItem>>> ("/api/solveig/search" + query);
             if(result.data.success){
                 resolve((result.data as any) as Array<SolveigItem>);
             }
