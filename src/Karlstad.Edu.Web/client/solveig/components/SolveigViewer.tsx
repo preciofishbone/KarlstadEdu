@@ -4,14 +4,16 @@ import { StyleFlow, VueComponentBase, BlockSettingsReader } from '@omnia/fx/ux';
 import { SolveigViewerStyles } from './SolveigViewer.css';
 import { SolveigViewerBlockSettings } from './SolveigViewerSettings';
 import { SolveigService } from '../services/SolveigService';
+import { SolveigStore } from '../store/SolveigStore';
+import { SolveigItem } from '../model/SolveigItem';
 
 @Component
 export default class SolveigViewer extends VueComponentBase implements IWebComponentInstance {
     
-    @Inject(SolveigService) service : SolveigService
+    @Inject(SolveigStore) solveigStore : SolveigStore
 
     private SolveigViewerClasses = StyleFlow.use(SolveigViewerStyles);
-    private searchText:string = "";
+    private searchText:string = "";    
     
 
     @BlockSettingsReader<SolveigViewerBlockSettings>({
@@ -24,11 +26,28 @@ export default class SolveigViewer extends VueComponentBase implements IWebCompo
         WebComponentBootstrapper.registerElementInstance(this, this.$el);
     }
 
-    async onSearch(){
-        let result = await this.service.search(this.searchText);
-        debugger;
-
+    onSearch(){
+        this.solveigStore.actions.loadSampleData.dispatch();
     }
+
+
+    renderSolveigItem(h,item:SolveigItem){
+        return (<v-card>
+                    <v-card-text>
+                        {item.name}
+                    </v-card-text>
+        </v-card>)
+    }
+
+
+    renderSolveigItems(h){
+        let result:Array<JSX.Element> = []
+        this.solveigStore.solveigItems.state.forEach(item => {
+            result.push(this.renderSolveigItem(h,item));
+        });
+        return result;
+    }
+
 
     render(h) {
         return (
@@ -40,9 +59,8 @@ export default class SolveigViewer extends VueComponentBase implements IWebCompo
                         </v-text-field>
                         <v-btn onClick={()=>this.onSearch()}>
                             Search
-                        </v-btn>
-                        
-
+                        </v-btn>                       
+                {this.renderSolveigItems(h)}
             </div>
         )
     }
