@@ -1,7 +1,7 @@
 import { Store } from '@omnia/fx/stores';
 import { Injectable, Inject } from '@omnia/fx';
 import { InstanceLifetimes } from '@omnia/fx-models';
-import { SolveigItem } from '../model/SolveigItemt';
+import { SolveigItem } from '../model/SolveigItem';
 import { SolveigService } from '../services/SolveigService';
 
 @Injectable({

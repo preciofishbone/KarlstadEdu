@@ -12,20 +12,23 @@ export default class GraphExample extends VueComponentBase implements IWebCompon
     @Inject(GraphService) graphService : GraphService;
     private GraphExampleClasses = StyleFlow.use(GraphExampleStyles);
 
+    private meString: string = "";
+
     @BlockSettingsReader<GraphExampleBlockSettings>({
         defaultValue: { title: 'my block title'},
         editElement: "krl-graph-example-settings"
     })
     protected settings: GraphExampleBlockSettings;
 
-    mounted() {
+    async mounted() {
         WebComponentBootstrapper.registerElementInstance(this, this.$el);
+        this.meString = await this.graphService.getMe();
     }
 
     render(h) {
         return (
             <div class={this.GraphExampleClasses.container}>
-                {this.settings.title}
+                {this.meString}
             </div>
         )
     }

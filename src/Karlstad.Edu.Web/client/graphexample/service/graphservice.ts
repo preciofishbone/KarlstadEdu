@@ -9,10 +9,10 @@ export class GraphService {
         
     constructor(){}
 
-    async search(query:string){
-        return new Promise<Array<null>>(async (resolve,reject)=>{
-            //let result = await this.httpClient.get<IHttpApiOperationResult<Array<SolveigItem>>> ("/api/solveig/search?query=" + query);
-            //resolve((result.data as any) as Array<SolveigItem>);
+    async getMe(){
+        return new Promise<string>(async (resolve,reject)=>{
+            let result = await this.httpClient.get<string> ("/api/qraph/get");
+            resolve(result.data);
         })
     }
 
